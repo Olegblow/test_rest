@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+
+
+    db:
+        restart: always
+        image: postgres:10-alpine
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        env_file:
+            - .env
+
+
+    rest_ex:
+        build: .
+        
+        ports:
+            - '8001:8000'
+        volumes: 
+            - ./rest_project:/rest_project
+        
+        env_file: .env
+        depends_on:
+            - db
+        links:
+             - db:db      
+        command: python manage.py runserver 0.0.0.0:8000
+
+    db:
+        restart: always
+        image: postgres:10-alpine
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        env_file:
+            - .env
+
+volumes:
+    postgres_data:
