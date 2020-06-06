@@ -1,6 +1,6 @@
 asgiref==3.2.3
 attrs==19.3.0
-Django==2.2.7
+Django==2.2.13
 django-filter==2.2.0
 django-templated-mail==1.1.1
 djangorestframework==3.11.0
